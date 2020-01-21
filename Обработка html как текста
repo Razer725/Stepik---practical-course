@@ -1,0 +1,12 @@
+import re
+from urllib.request import urlopen
+from collections import Counter
+
+pattern = r'<code>(.*?)</code>'
+html = urlopen('https://stepik.org/media/attachments/lesson/209719/2.html').read().decode('utf-8')
+s = sorted(re.findall(pattern, html))
+print(s)
+frequent = Counter(s)
+print(frequent)
+
+print(*frequent.most_common())
