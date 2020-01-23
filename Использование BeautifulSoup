@@ -1,0 +1,8 @@
+import requests
+from bs4 import BeautifulSoup
+
+page = requests.get("https://stepik.org/media/attachments/lesson/209723/5.html")
+soup = BeautifulSoup(page.content, 'html.parser')
+data = soup.find_all('td')
+numbers = [int(n.text) for n in data]
+print(sum(numbers))
