@@ -1,0 +1,27 @@
+import xlrd
+from statistics import median, mean
+
+rb = xlrd.open_workbook('D:\\salaries.xlsx')
+sheet = rb.sheet_by_index(0)
+
+median_salary = dict()
+vals = [sheet.row_values(rownum) for rownum in range(sheet.nrows)]
+
+for i in range(1, len(vals)):
+    current_salary = []
+    for j in range(1, len(vals[0])):
+        current_salary.append(vals[i][j])
+    else:
+        median_salary[vals[i][0]] = median(current_salary)
+maximum = max(median_salary.items(), key=lambda kv: kv[1])
+print(maximum[0], end=' ')
+
+mean_salary = dict()
+for j in range(1, len(vals[0])):
+    current_salary = []
+    for i in range(1, len(vals)):
+        current_salary.append(vals[i][j])
+    else:
+        mean_salary[vals[0][j]] = mean(current_salary)
+maximum = max(mean_salary.items(), key=lambda kv: kv[1])
+print(maximum[0])
