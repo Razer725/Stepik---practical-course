@@ -1,0 +1,8 @@
+import openpyxl as opx
+
+wb = opx.load_workbook('D:\\trekking2.xlsx')
+sheet = wb.active
+val = [[col.value for col in row] for row in sheet.rows]
+answer = sorted(val[1:], key=lambda x: (-x[1], x[0]))
+for element in answer:
+    print(element[0])
